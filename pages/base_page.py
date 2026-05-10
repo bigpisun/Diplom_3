@@ -5,10 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 20)  # увеличил до 20 секунд
-
-    def wait_for_page_load(self):
-        self.wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+        self.wait = WebDriverWait(driver, 10)
 
     def click(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator)).click()
@@ -18,6 +15,7 @@ class BasePage:
 
     def is_visible(self, locator):
         try:
-            return self.wait.until(EC.visibility_of_element_located(locator)) is not None
+            self.wait.until(EC.visibility_of_element_located(locator))
+            return True
         except:
             return False
