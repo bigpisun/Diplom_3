@@ -1,5 +1,4 @@
 import allure
-import pytest
 from pages.main_page import MainPage
 
 
@@ -12,11 +11,11 @@ class TestNavigation:
         page.wait_for_home_page()
         page.click_order_feed()
         page.click_constructor()
-        assert driver.current_url == "https://stellarburgers.education-services.ru/"
+        assert page.get_current_url() == "https://stellarburgers.education-services.ru/"
 
     @allure.title("Переход на страницу Лента заказов")
     def test_order_feed_click(self, driver):
         page = MainPage(driver)
         page.wait_for_home_page()
         page.click_order_feed()
-        assert "feed" in driver.current_url
+        assert "feed" in page.get_current_url()

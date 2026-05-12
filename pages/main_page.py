@@ -51,3 +51,6 @@ class MainPage(BasePage):
 
     def close_modal(self):
         self.click(IngredientModalLocators.CLOSE_BUTTON)
+
+    def get_current_url(self):
+        return self.driver.current_url
