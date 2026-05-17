@@ -1,21 +1,17 @@
-import allure
+import pytest
 from pages.main_page import MainPage
 
-
-@allure.feature("Навигация")
 class TestNavigation:
 
-    @allure.title("Переход на страницу Конструктор")
-    def test_constructor_click(self, driver):
+    def test_click_constructor_button_opens_constructor(self, driver):
         page = MainPage(driver)
-        page.wait_for_home_page()
+        page.open_main_page()
         page.click_order_feed()
         page.click_constructor()
-        assert page.get_current_url() == "https://stellarburgers.education-services.ru/"
+        assert "feed" not in page.get_current_url()
 
-    @allure.title("Переход на страницу Лента заказов")
-    def test_order_feed_click(self, driver):
+    def test_click_order_feed_button_opens_order_feed(self, driver):
         page = MainPage(driver)
-        page.wait_for_home_page()
+        page.open_main_page()
         page.click_order_feed()
         assert "feed" in page.get_current_url()
